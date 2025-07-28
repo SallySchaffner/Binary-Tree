@@ -185,6 +185,9 @@ class PositionalBinaryTree:
                 
 
 if __name__ == "__main__":
+    """ 
+        Test for pre-order and inorder traversals. 
+    """
     tree = PositionalBinaryTree()
     root = tree.add_root("A")
     left = tree.add_left(root, "B")

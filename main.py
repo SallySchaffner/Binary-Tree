@@ -31,9 +31,11 @@ def test_binary_tree():
 
     print("Adding grandchildren...")
     left_left = tree.add_left(left, "D")
+    tree.add_right(left, "F")
     right_right = tree.add_right(right, "E")
-    assert tree.num_children(left) == 1
-    assert tree.num_children(right) == 1
+    tree.add_left(right, "G")
+    assert tree.num_children(left) == 2
+    assert tree.num_children(right) == 2
     assert tree.is_leaf(left_left)
     assert tree.is_leaf(right_right)
 
@@ -44,10 +46,14 @@ def test_binary_tree():
     assert old_val == "C"
     assert right.element() == "Z"
 
+    showTree(tree)
+
     print("Deleting a leaf node...")
     deleted_val = tree.delete(left_left)
     assert deleted_val == "D"
     assert tree.left(left) is None
+
+    showTree(tree)
 
     print("Attaching two subtrees...")
     t1 = PositionalBinaryTree()
@@ -59,6 +65,7 @@ def test_binary_tree():
     assert tree.right(right_right).element() == "Y"
 
     print("Tree size:", len(tree))
+    showTree(tree)
 
     
 
