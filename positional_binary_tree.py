@@ -8,7 +8,7 @@ class PositionalBinaryTree:
   """
 
   class _Node:
-      """Lightweight, nonpublic class for storing a node."""
+      """Lightweight, nonpublic class for storing a node (See note below)."""
       __slots__ = '_element', '_parent', '_left', '_right'
 
       def __init__(self, element, parent=None, left=None, right=None):
@@ -200,5 +200,14 @@ if __name__ == "__main__":
     print("Inorder traversal:")
     print(" -> ".join(tree.inorder()))   # D -> B -> E -> A -> F -> C -> G  
 
-          
+"""
+__slots__ = '_element', '_parent', '_left', '_right'
+    The __slots__ statement serves several important purposes:
+    1.	Memory optimization: It restricts the instance attributes to only those listed (_element, _parent, _left, _right), preventing Python from creating a __dict__ for each instance. This significantly reduces memory usage per node.
+    2.	Performance improvement: Attribute access becomes faster since Python doesn't need to look up attributes in a dictionary.
+    3.	Attribute restriction: It prevents accidental creation of new attributes on _Node instances, which helps catch typos and ensures the class interface remains clean.
+    4.	Space efficiency for tree structures: Since binary trees can have many nodes, the memory savings from __slots__ can be substantial when working with large trees.
+    This is particularly beneficial in the _Node class because it's described as a "lightweight, nonpublic class" - the __slots__ declaration ensures it truly remains lightweight by minimizing the memory footprint of each node in the binary tree.
+
+"""       
         
